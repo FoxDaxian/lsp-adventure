@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
     configureWebpack: {
         plugins: [
+            // https://github.com/microsoft/monaco-editor/blob/main/webpack-plugin/README.md
             new MonacoWebpackPlugin({
                 languages: ['python'], //configure your languages here
                 features: ['coreCommands', 'find'],
