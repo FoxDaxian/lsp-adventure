@@ -1,0 +1,3 @@
+- 看看怎么把语法高亮拿过来，参考vetur的client
+- 看看 [这个插件](https://github.com/microsoft/monaco-editor/blob/main/webpack-plugin/src/index.ts) 做了什么
+- 还有这个todolanguage的仓库: https://github.com/amazzalel-habib/TodoLangEditor

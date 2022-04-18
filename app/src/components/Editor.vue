@@ -5,8 +5,8 @@
 <script>
 import { listen } from 'vscode-ws-jsonrpc';
 
-import s from '../utils/language.js';
-console.log(s);
+// import s from '../utils/language.js';
+// console.log(s);
 
 window.setImmediate = window.setTimeout;
 
@@ -70,9 +70,23 @@ export default {
         //     },
         // });
         loader.init().then((monaco) => {
+            monaco.languages.register({
+                id: 'vue',
+            });
+            monaco.languages.onLanguage('vue', () => {
+                console.log('是vue文件');
+            });
+            // const a = monaco.editor.createModel('1', 'vue', monaco.Uri.parse('/test1'));
+            // console.log(a.getValue());
+            const code = ['const a = 123;', 'console.log(languageDefinitions);'];
             const editorOptions = {
                 // language: "python",
-                language: 'vue',
+                model: monaco.editor.createModel(
+                    code.join('\n'),
+                    'vue',
+                    monaco.Uri.parse('/Users/fengshiyu/github/lsp-adventure/app/src/utils/language.js')
+                ),
+
                 minimap: { enabled: true },
             };
 
@@ -91,7 +105,13 @@ export default {
                 name: 'Monaco language client',
                 clientOptions: {
                     // documentSelector: ["python"],
-                    documentSelector: [{ scheme: 'file', language: 'vue' }],
+                    // documentSelector: [{ scheme: 'file', language: 'vue' }],
+                    documentSelector: [
+                        {
+                            language: 'vue',
+                            scheme: 'file'
+                        },
+                    ],
                     errorHandler: {
                         error: () => ErrorAction.Continue,
                         closed: () => CloseAction.Restart,
