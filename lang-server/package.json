@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "vls": "^0.7.6",
     "vscode-languageserver": "^7.0.0",
     "vscode-ws-jsonrpc": "^0.2.0",
     "ws": "^8.5.0"

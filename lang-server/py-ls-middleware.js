@@ -12,15 +12,44 @@ function launch(socket) {
     const socketConnection = server.createConnection(reader, writer, () =>
         socket.dispose()
     );
-    const serverConnection = server.createServerProcess('JSON', 'pyls');
+    // 这个方法的作用
+    // const serverConnection = server.createServerProcess('JSON', 'pyls');
+    const serverConnection = server.createServerProcess('JSON', 'node', [
+        './node_modules/vls/dist/vueServerMain.js',
+    ]);
     server.forward(socketConnection, serverConnection, (message) => {
-        console.log(message, '==');
         if (rpc.isRequestMessage(message)) {
             if (message.method === lsp.InitializeRequest.type.method) {
                 const initializeParams = message.params;
                 initializeParams.processId = process.pid;
+                console.log(initializeParams);
+
+                // 增加了register language后，通信ok了
+                // 但是通信的时候传递的textDocument的uri传递的不多
+                // 可以看下vetur是怎么传递的
+                initializeParams.workspaceFolders = [
+                    {
+                        uri: '/',
+                        name: 'test',
+                        index: 0,
+                    },
+                ];
             }
         }
+        if (rpc.isRequestMessage(message)) {
+            console.log(message);
+        }
+        // if (rpc.isResponseMessage(message)) {
+        //     console.log(message);
+        // }
+        // if (rpc.isNotificationMessage(message)) {
+        //     console.log(message);
+        // }
+
+        // if (message.method === 'textDocument/codeAction') {
+        //     console.log(message.params.range, 'request的json rpc');
+        // }
+        // console.log(message, 'request的json rpc');
         return message;
     });
 }
