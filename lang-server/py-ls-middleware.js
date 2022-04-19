@@ -1,5 +1,5 @@
-const rpc = require('vscode-ws-jsonrpc');
-const server = require('vscode-ws-jsonrpc/lib/server');
+const rpc = require('@codingame/monaco-jsonrpc');
+const server = require('@codingame/monaco-jsonrpc/lib/server');
 const lsp = require('vscode-languageserver');
 
 const WebSocket = require('ws');
@@ -27,13 +27,13 @@ function launch(socket) {
                 // 增加了register language后，通信ok了
                 // 但是通信的时候传递的textDocument的uri传递的不多
                 // 可以看下vetur是怎么传递的
-                initializeParams.workspaceFolders = [
-                    {
-                        uri: '/',
-                        name: 'test',
-                        index: 0,
-                    },
-                ];
+                // initializeParams.workspaceFolders = [
+                //     {
+                //         uri: '/',
+                //         name: 'test',
+                //         index: 0,
+                //     },
+                // ];
             }
         }
         if (rpc.isRequestMessage(message)) {

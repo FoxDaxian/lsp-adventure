@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { listen } from 'vscode-ws-jsonrpc';
+import { listen } from '@codingame/monaco-jsonrpc';
 
 // import s from '../utils/language.js';
 // console.log(s);
@@ -78,14 +78,19 @@ export default {
             });
             // const a = monaco.editor.createModel('1', 'vue', monaco.Uri.parse('/test1'));
             // console.log(a.getValue());
-            const code = ['const a = 123;', 'console.log(languageDefinitions);'];
+            // const code = [
+            //     'const a = 123;',
+            //     'console.log(languageDefinitions);',
+            // ];
             const editorOptions = {
                 // language: "python",
-                model: monaco.editor.createModel(
-                    code.join('\n'),
-                    'vue',
-                    monaco.Uri.parse('/Users/fengshiyu/github/lsp-adventure/app/src/utils/language.js')
-                ),
+                // model: monaco.editor.createModel(
+                //     code.join('\n'),
+                //     'vue',
+                //     // monaco.Uri.parse(
+                //     //     '/Users/xx/github/lsp-adventure/app/src/utils/language.js'
+                //     // )
+                // ),
 
                 minimap: { enabled: true },
             };
@@ -104,12 +109,20 @@ export default {
             return new MonacoLanguageClient({
                 name: 'Monaco language client',
                 clientOptions: {
+                    middleware: {
+                        workspace: {
+                            configuration: (params, token, configuration) => {
+                                console.log(params, token, configuration);
+                                return [{ foo: 'bar' }];
+                            },
+                        },
+                    },
                     // documentSelector: ["python"],
                     // documentSelector: [{ scheme: 'file', language: 'vue' }],
                     documentSelector: [
                         {
                             language: 'vue',
-                            scheme: 'file'
+                            scheme: 'file',
                         },
                     ],
                     errorHandler: {

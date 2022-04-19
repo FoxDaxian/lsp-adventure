@@ -30,6 +30,13 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@codingame/monaco-jsonrpc@^0.3.1":
+  version "0.3.1"
+  resolved "https://npm.corp.kuaishou.com/@codingame%2fmonaco-jsonrpc/-/monaco-jsonrpc-0.3.1.tgz#f28dc2e27fbfe9276d2faaf40c9a572272cf3ffd"
+  integrity sha1-8o3C4n+/6SdtL6r0DJpXInLPP/0=
+  dependencies:
+    vscode-jsonrpc "^6.0.0"
+
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
   resolved "https://npm.corp.kuaishou.com/@eslint%2feslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"
@@ -961,7 +968,7 @@ vls@^0.7.6:
     tslint "6.1.3"
     typescript "^4.4.4"
 
-vscode-jsonrpc@6.0.0:
+vscode-jsonrpc@6.0.0, vscode-jsonrpc@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-6.0.0.tgz#108bdb09b4400705176b957ceca9e0880e9b6d4e"
   integrity sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==
