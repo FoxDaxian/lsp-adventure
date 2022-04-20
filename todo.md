@@ -2,3 +2,5 @@
 - 看看 [这个插件](https://github.com/microsoft/monaco-editor/blob/main/webpack-plugin/src/index.ts) 做了什么
 - 还有这个todolanguage的仓库: https://github.com/amazzalel-habib/TodoLangEditor
 - 这个issue说明了如何配置 https://github.com/TypeFox/monaco-languageclient/issues/201
+- https://github.com/codesandbox/codesandbox-client/issues/580
+- 参考codesandbox-client

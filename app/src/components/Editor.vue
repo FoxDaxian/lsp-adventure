@@ -4,6 +4,7 @@
 
 <script>
 import { listen } from '@codingame/monaco-jsonrpc';
+import vscode from 'vscode';
 
 // import s from '../utils/language.js';
 // console.log(s);
@@ -78,19 +79,20 @@ export default {
             });
             // const a = monaco.editor.createModel('1', 'vue', monaco.Uri.parse('/test1'));
             // console.log(a.getValue());
-            // const code = [
-            //     'const a = 123;',
-            //     'console.log(languageDefinitions);',
-            // ];
+            const code = [
+                'const a = 123;',
+                'console.log(languageDefinitions);',
+            ];
             const editorOptions = {
+                // language: 'vue',
                 // language: "python",
-                // model: monaco.editor.createModel(
-                //     code.join('\n'),
-                //     'vue',
-                //     // monaco.Uri.parse(
-                //     //     '/Users/xx/github/lsp-adventure/app/src/utils/language.js'
-                //     // )
-                // ),
+                model: monaco.editor.createModel(
+                    code.join('\n'),
+                    'vue',
+                    monaco.Uri.parse(
+                        '/Users/xx/github/lsp-adventure/app/src/utils/language.js'
+                    )
+                ),
 
                 minimap: { enabled: true },
             };
@@ -109,14 +111,19 @@ export default {
             return new MonacoLanguageClient({
                 name: 'Monaco language client',
                 clientOptions: {
-                    middleware: {
-                        workspace: {
-                            configuration: (params, token, configuration) => {
-                                console.log(params, token, configuration);
-                                return [{ foo: 'bar' }];
-                            },
-                        },
+                    workspaceFolder: {
+                        uri: vscode.Uri.parse('/'),
+                        name: 'test',
+                        index: 0,
                     },
+                    // middleware: {
+                    //     workspace: {
+                    //         configuration: (params, token, configuration) => {
+                    //             console.log(params, token, configuration);
+                    //             return [{ foo: 'bar' }];
+                    //         },
+                    //     },
+                    // },
                     // documentSelector: ["python"],
                     // documentSelector: [{ scheme: 'file', language: 'vue' }],
                     documentSelector: [
@@ -151,6 +158,7 @@ export default {
                 webSocket: webSocket,
                 onConnection: (connection) => {
                     var languageClient = this.createLanguageClient(connection);
+                    console.log(languageClient._c2p);
                     var disposable = languageClient.start();
 
                     connection.onClose(function () {
