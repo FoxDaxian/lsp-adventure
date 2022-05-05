@@ -81,7 +81,7 @@ export default {
             // console.log(a.getValue());
             const code = [
                 'const a = 123;',
-                'console.log(languageDefinitions);',
+                'console.log(a);',
             ];
             const editorOptions = {
                 // language: 'vue',
@@ -90,7 +90,7 @@ export default {
                     code.join('\n'),
                     'vue',
                     monaco.Uri.parse(
-                        '/Users/xx/github/lsp-adventure/app/src/utils/language.js'
+                        '/Users/fengshiyu/github/lsp-adventure/app/src/components/xxx.vue'
                     )
                 ),
 
@@ -158,7 +158,6 @@ export default {
                 webSocket: webSocket,
                 onConnection: (connection) => {
                     var languageClient = this.createLanguageClient(connection);
-                    console.log(languageClient._c2p);
                     var disposable = languageClient.start();
 
                     connection.onClose(function () {

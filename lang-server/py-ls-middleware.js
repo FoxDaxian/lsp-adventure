@@ -14,8 +14,11 @@ function launch(socket) {
     );
     // 这个方法的作用
     // const serverConnection = server.createServerProcess('JSON', 'pyls');
+    // const serverConnection = server.createServerProcess('JSON', 'node', [
+    //     './node_modules/vls/dist/vueServerMain.js',
+    // ]);
     const serverConnection = server.createServerProcess('JSON', 'node', [
-        './node_modules/vls/dist/vueServerMain.js',
+        '/Users/fengshiyu/github/vetur/server/dist/vueServerMain.js',
     ]);
     server.forward(socketConnection, serverConnection, (message) => {
         if (rpc.isRequestMessage(message)) {
@@ -36,9 +39,9 @@ function launch(socket) {
                 // ];
             }
         }
-        if (rpc.isRequestMessage(message)) {
-            console.log(message);
-        }
+        // if (rpc.isRequestMessage(message)) {
+        //     console.log(message);
+        // }
         // if (rpc.isResponseMessage(message)) {
         //     console.log(message);
         // }
